@@ -42,8 +42,8 @@ class BaseSystemParams:
     V_fast_x: float = 1350
 
     V_0_y: float = field(init=False)
-    V_slow_y: float = 80
-    V_fast_y: float = 1350
+    V_slow_y: float = -80
+    V_fast_y: float = -1350
 
     omega_slow: float = 2*pi*7e3
     omega_fast: float = 2*pi*17.5e6
@@ -67,7 +67,7 @@ class BaseSystemParams:
         self.gamma_gas = 0.619 * ((6 * pi * self.R_p**2) / self.M_p) * self.Pres * np.sqrt(2 * self.m0 / (pi * Boltzmann * self.Temp))
         self.E_dot_gas = 11.5e-28 #(Boltzmann * self.Temp) * self.gamma_gas
         
-        self.V_0_x = 0.5 * (self.alpha_z/self.alpha_x) * (self.dx/self.dz)**2 * self.V_0_z
+        self.V_0_x = -0.5 * (self.alpha_z/self.alpha_x) * (self.dx/self.dz)**2 * self.V_0_z
         self.V_0_y = -0.5 * (self.alpha_z/self.alpha_x) * (self.dx/self.dz)**2 * self.V_0_z
         
         self.l = self.omega_slow / self.omega_fast  # Dimensionless ratio

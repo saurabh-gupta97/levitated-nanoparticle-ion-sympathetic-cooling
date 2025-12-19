@@ -41,13 +41,13 @@ V_0_z, V_slow_z, V_fast_z = 56.5, 0, 0
 
 dx = 0.9 * 10**(-3)
 alpha_x = 0.93
-V_0_x = 0.5 * (alpha_z/alpha_x) * (dx/dz)**2 * V_0_z
+V_0_x = -0.5 * (alpha_z/alpha_x) * (dx/dz)**2 * V_0_z
 V_slow_x, V_fast_x = 80, 1350
 
 dy = 0.9 * 10**(-3)
 alpha_y = 0.93
 V_0_y =  -0.5 * (alpha_z/alpha_y) * (dx/dz)**2 * V_0_z
-V_slow_y, V_fast_y = 80, 1350
+V_slow_y, V_fast_y = -80, -1350
 
 omega_slow, omega_fast = 2 * np.pi * 7 * 10**3, 2 * np.pi * 17.5 * 10**6
 l = omega_slow / omega_fast

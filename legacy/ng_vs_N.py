@@ -69,7 +69,7 @@ class SystemParameters:
         # Radial parameters
         r0, alpha_r = 0.9e-3, 0.93              # Geometric factor
         # DC voltages derived to satisfy Laplace equation constraints
-        V_dc_x = 0.5 * (alpha_z/alpha_r) * (r0/z0)**2 * V_dc_z # Constant voltage
+        V_dc_x = -0.5 * (alpha_z/alpha_r) * (r0/z0)**2 * V_dc_z # Constant voltage
         V_dc_y = -0.5 * (alpha_z/alpha_r) * (r0/z0)**2 * V_dc_z # Constant voltage
         V_slow_r, V_fast_r = 80, 1350           # Slow- and fast-oscillating voltage
 
