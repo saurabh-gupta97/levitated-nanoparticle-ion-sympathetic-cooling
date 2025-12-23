@@ -37,6 +37,8 @@ class BaseSystemParams:
     V_slow_z: float = 0
     V_fast_z: float = 0
 
+    V_comp: float = 0.68
+
     V_0_x: float = field(init=False)
     V_slow_x: float = 80
     V_fast_x: float = 1350
@@ -54,21 +56,21 @@ class BaseSystemParams:
     E_dot_gas: float = field(init=False)
     E_dot_td: float = 0 #2.8 * 10**(-26)
 
-    gamma_dop: float = 2*pi*10e3
+    gamma_dop: float = 2 * pi * 10e3
     E_dot_dop: float = 3.8e-22
 
     Gamma_ba_to_gamma_fb: np.ndarray = field(
-    default_factory=lambda: np.array([561.39, 750.09, 842.08])
+    default_factory=lambda: np.array([719.84, 782.99, 842.08])
     )
 
     def __post_init__(self):
         self.R_p = np.cbrt((self.M_p/self.rho_p) * 3 / (4*pi))
 
         self.gamma_gas = 0.619 * ((6 * pi * self.R_p**2) / self.M_p) * self.Pres * np.sqrt(2 * self.m0 / (pi * Boltzmann * self.Temp))
-        self.E_dot_gas = 11.5e-28 #(Boltzmann * self.Temp) * self.gamma_gas
+        self.E_dot_gas = (Boltzmann * self.Temp) * self.gamma_gas #11.5e-28 
         
-        self.V_0_x = -0.5 * (self.alpha_z/self.alpha_x) * (self.dx/self.dz)**2 * self.V_0_z
-        self.V_0_y = -0.5 * (self.alpha_z/self.alpha_x) * (self.dx/self.dz)**2 * self.V_0_z
+        self.V_0_x = -0.5 * (self.alpha_z/self.alpha_x) * (self.dx/self.dz)**2 * self.V_0_z + self.V_comp
+        self.V_0_y = -0.5 * (self.alpha_z/self.alpha_x) * (self.dx/self.dz)**2 * self.V_0_z - self.V_comp
         
         self.l = self.omega_slow / self.omega_fast  # Dimensionless ratio
         self.T_slow = (2 * pi) / self.omega_slow    # Time period of slow voltage

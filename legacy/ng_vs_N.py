@@ -68,9 +68,10 @@ class SystemParameters:
         
         # Radial parameters
         r0, alpha_r = 0.9e-3, 0.93              # Geometric factor
+        V_comp = 0.68
         # DC voltages derived to satisfy Laplace equation constraints
-        V_dc_x = -0.5 * (alpha_z/alpha_r) * (r0/z0)**2 * V_dc_z # Constant voltage
-        V_dc_y = -0.5 * (alpha_z/alpha_r) * (r0/z0)**2 * V_dc_z # Constant voltage
+        V_dc_x = -0.5 * (alpha_z/alpha_r) * (r0/z0)**2 * V_dc_z + V_comp # Constant voltage
+        V_dc_y = -0.5 * (alpha_z/alpha_r) * (r0/z0)**2 * V_dc_z - V_comp # Constant voltage
         V_slow_r, V_fast_r = 80, 1350           # Slow- and fast-oscillating voltage
 
         # --- Drive Frequencies ---
@@ -133,7 +134,7 @@ class SystemParameters:
         
         self.Gamma_to_gamma = np.array([0,0,0]) # Gamma_ba / gamma_fb 
         # Use the below array for Gamma_to_gamma if feedback backaction is non-zero
-        #np.array([561.39, 750.09, 842.08])
+        #np.array([719.84, 782.99, 842.08])
         
 
     def get_particle_properties(self, n_ions):

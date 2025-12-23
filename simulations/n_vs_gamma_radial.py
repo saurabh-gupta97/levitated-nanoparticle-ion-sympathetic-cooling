@@ -50,8 +50,8 @@ class RadialParams(BaseSystemParams):
     Configuration for Radial Dynamics.
     """
     # Conversion factors for different axes stored as attributes
-    Gamma_to_gamma_x: float = 561.39
-    Gamma_to_gamma_y: float = 750.09 
+    Gamma_to_gamma_x: float = 719.84
+    Gamma_to_gamma_y: float = 782.99
     
     @property
     def Gamma_to_gamma_r(self):
@@ -160,7 +160,7 @@ if __name__ == "__main__":
     )
     
     # F. Load Benchmark Data
-    json_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'data', 'raw', 'n_vs_gamma_secular_benchmark.json'))
+    json_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'data', 'raw', 'secular_benchmark.json'))
     try:
         # Load data specific to the current DIRECTION
         gamma_bench, pop_bench_large, pop_bench_small = load_benchmark_data(json_path, DIRECTION)
